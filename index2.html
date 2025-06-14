@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barbería Elegante</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 10px;
+    }
+    .galeria img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .reserva {
+      padding: 20px;
+      background-color: white;
+      max-width: 500px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+    .reserva h2 {
+      margin-top: 0;
+    }
+    .reserva input, .reserva select, .reserva textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .reserva button {
+      background-color: #222;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>GOMEZ BARBER</h1>
+    <p>Estilo, Precisión y Elegancia</p>
+  </header>
+
+  <section class="galeria">
+    <img src="imagenes/corte1.jpeg" alt="Corte 1">
+    <img src="imagenes/corte2.jpg" alt="Corte 2">
+    <img src="imagenes/corte3.jpeg" alt="Corte 3">
+    <img src="imagenes/corte5.jpg" alt="Corte 4">
+  </section>
+
+  <section class="reserva">
+    <h2>Reserva tu cita</h2>
+    <form onsubmit="enviarWhatsApp(event)">
+      <input type="text" id="nombre" placeholder="Tu nombre" required>
+      <input type="email" id="email" placeholder="Tu correo electrónico" required>
+      <input type="tel" id="telefono" placeholder="Teléfono de contacto">
+      <select id="tipo_corte" required>
+        <option value="">Selecciona un tipo de corte</option>
+        <option value="clasico">Corte Clásico</option>
+        <option value="fade">Fade</option>
+        <option value="undercut">Undercut</option>
+        <option value="moderno">Moderno</option>
+      </select>
+      <input type="date" id="fecha" required>
+      <input type="time" id="hora" required>
+      <textarea id="comentarios" placeholder="Comentarios adicionales"></textarea>
+      <button type="submit">Reservar</button>
+    </form>
+  </section>
+
+  <script>
+    function enviarWhatsApp(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const telefono = document.getElementById('telefono').value;
+      const tipoCorte = document.getElementById('tipo_corte').value;
+      const fecha = document.getElementById('fecha').value;
+      const hora = document.getElementById('hora').value;
+      const comentarios = document.getElementById('comentarios').value;
+
+      const mensaje = `Reserva de cita:%0A👤 Nombre: ${nombre}%0A📧 Email: ${email}%0A📞 Tel: ${telefono}%0A✂️ Corte: ${tipoCorte}%0A📅 Fecha: ${fecha}%0A⏰ Hora: ${hora}%0A💬 Comentarios: ${comentarios}`;
+
+      const numeroWhatsApp = '+50375059530'; // Reemplaza con tu número real
+      const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>
